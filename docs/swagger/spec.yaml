@@ -1,0 +1,94 @@
+openapi: 3.0.0
+info:
+  title: Wallet Account User Service
+  version: 0.0.1
+  description: |
+    Wallet Account User Service is REST HTTP API for managing user data
+  termsOfService: 'http://swagger.io/terms/'
+  x-logo:
+    url: 'https://redocly.github.io/redoc/petstore-logo.png'
+    backgroundColor: '#FFFFFF'
+    altText: Petstore logo
+servers:
+  - url: 'https://wallet-account-user-svc-uzqgb7lfiq-ew.a.run.app'
+    description: Testing Server
+tags:
+  - name: Wallet Account Users
+    description: Wallet Plans are used to group wallet accounts that have common characteristics
+    externalDocs:
+      url: 'https://wallet-gateway-svc-uzqgb7lfiq-ew.a.run.app'
+paths:
+  /v1/users:
+    get:
+      summary: Obtain a list of wallet account users
+      tags:
+        - Wallet Account Users
+      responses:
+        '200':
+          description: Successfully obtained the list of wallet account users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletAccountUsers'
+    post:
+      summary: Create a wallet plan
+      tags:
+        - Wallet Plans
+      requestBody:
+        description: The wallet plan specification
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletAccountUser'
+      responses:
+        '201':
+          description: Successfully created a wallet plan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletAccountUser'
+
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        streetName:
+          type: string
+        streetNumber:
+          type: string
+        city:
+          type: string
+        zipCode:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+    WalletAccountUser:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The user identifier
+        lastName:
+          type: string
+          description: User last name
+        firstName:
+          type: string
+          description: User first name
+        address:
+          $ref: '#/components/schemas/Address'
+          description: User address
+        email:
+          type: string
+          description: user email address
+        phoneNumber:
+          type: string
+          description: User phone number
+          example: '+33613047943'
+    WalletAccountUsers:
+      type: array
+      items:
+        $ref: '#/components/schemas/WalletAccountUser'
