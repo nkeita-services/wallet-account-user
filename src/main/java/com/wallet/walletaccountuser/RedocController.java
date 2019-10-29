@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class RedocController {
-	@GetMapping("/doc/swagger/redoc")
+	@GetMapping("/docs/swagger/redoc")
 	String get(){
 		return "redoc";
 	}
