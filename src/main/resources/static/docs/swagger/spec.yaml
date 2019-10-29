@@ -3,7 +3,8 @@ info:
   title: Wallet Account User Service
   version: 0.0.1
   description: |
-    Wallet Account User Service is REST HTTP API for managing user data
+    Wallet Account User Service is a REST HTTP API for managing user data.
+    User Kyc level and kyc documents are handled by a different service
   termsOfService: 'http://swagger.io/terms/'
   x-logo:
     url: 'https://redocly.github.io/redoc/petstore-logo.png'
@@ -14,7 +15,7 @@ servers:
     description: Testing Server
 tags:
   - name: Wallet Account Users
-    description: Wallet Plans are used to group wallet accounts that have common characteristics
+    description: Wallet Account Users are used to handle wallet operations on user data
     externalDocs:
       url: 'https://wallet-gateway-svc-uzqgb7lfiq-ew.a.run.app'
 paths:
@@ -31,11 +32,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/WalletAccountUsers'
     post:
-      summary: Create a wallet plan
+      summary: Create a Wallet Account User
       tags:
-        - Wallet Plans
+        - Wallet Account Users
       requestBody:
-        description: The wallet plan specification
+        description: The wallet account user specification
         required: true
         content:
           application/json:
@@ -43,12 +44,56 @@ paths:
               $ref: '#/components/schemas/WalletAccountUser'
       responses:
         '201':
-          description: Successfully created a wallet plan
+          description: Successfully created a wallet account user
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletAccountUser'
-
+  /v1/users/{userId}:
+    get:
+      summary: Fetch user data
+      tags: 
+       - Wallet Account Users
+      parameters: 
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 6784bbea-ea94-426e-bb64-594eeee6cb03
+      responses:
+        '201':
+          description: Successfully created a wallet account user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletAccountUser'
+    patch:
+      summary: Update a Wallet Account User
+      tags:
+        - Wallet Account Users
+      parameters: 
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 6784bbea-ea94-426e-bb64-594eeee6cb03
+      requestBody:
+        description: The wallet account user specification
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletAccountUser'
+      responses:
+        '201':
+          description: Successfully created a wallet account user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletAccountUser'
+  
 components:
   schemas:
     Address:
