@@ -2,7 +2,7 @@
 
 ## Architecture
 
-![image info](./src/static/img/WalletAccountUser_Arch.png)
+![image info](./src/main/resources/static/img/WalletAccountUser_Arch.png)
 
 ## Coding convention
 https://google.github.io/styleguide/javaguide.html
