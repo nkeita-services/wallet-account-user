@@ -12,7 +12,7 @@ info:
     
     # Security
     
-    This service is not publicly accessible. Only the Wallet Gateway Service can make calls to its endpoins 
+    This service is not publicly accessible. Only the Wallet Gateway Service can make calls to its endpoints 
 
     ## Authentication
     
