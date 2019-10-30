@@ -234,7 +234,7 @@ components:
         city:
           type: string
           example: New Cross
-        zipCode:
+        postCode:
           type: string
           example: SE14 24
         state:
@@ -264,7 +264,21 @@ components:
         phoneNumber:
           type: string
           description: User phone number
-          example: '+33613047943'
+          example: 00447307568957
+        mobileNumber:
+          type: string
+          description: User mobile number
+          example: 00447307568957
+        language:
+          type: string
+          description: User language
+          example: en
+        walletOrganizations:
+          type: array
+          items:
+            type: string
+            format: uuid
+            example: 3288603f-adf8-453e-b4e9-cbad4805f86c
     WalletAccountUserWithId:
       allOf:
         - $ref: '#/components/schemas/WalletAccountUser'
