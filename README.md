@@ -13,3 +13,4 @@ https://google.github.io/styleguide/javaguide.html
 ```
 make up
 ```
+Go to http://localhost:8084/docs/swagger/redoc

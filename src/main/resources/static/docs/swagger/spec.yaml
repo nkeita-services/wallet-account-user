@@ -17,6 +17,26 @@ info:
     ## Authentication
     
     # Responses
+    
+    ## Errors
+    whenever an error occured within the platform, an error response that describes the problem will be returned
+    
+    | Field Name        | Field Description     |
+    |-------------------|-----------------------|
+    | Status            | "fail" or "error"     |
+    | StatusCode        | A business error code |
+    | StatusDescription | Error description     |
+    
+    ## Error codes
+    
+    | Error Code | Error Description                                |
+    |------------|--------------------------------------------------|
+    | 4001       | Can't obtain the list of wallet account users    |
+    | 4010       | Can't create the wallet account user             |
+    | 4020       | Wallet account user not found                    |
+    | 4030       | Can't obtain wallet account user data            |
+    | 4040       | Unable to update wallet account user informatiom |
+    |            |                                                  |
 
     # Changelog
 

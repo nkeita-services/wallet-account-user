@@ -11,3 +11,7 @@ services:
       - "8084:80"
     environment:
       - PORT=80
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
