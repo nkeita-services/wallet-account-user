@@ -16,7 +16,24 @@ info:
 
     ## Authentication
     
+    Access to the API is controlled by Oauth2 Client Credentials Grant
+    The client needs to request an access token from the oauth2 server. It provides its client id and client secret.
+    Then all requests to the Wallet Account User Service must be made over HTTP/HTTPS with this access token
+    
     # Responses
+    
+    ## HTTP Response Codes
+    | Status Code | Usage                                                       |
+    |-------------|-------------------------------------------------------------|
+    | 200         | The request completed successfully                          |
+    | 201         | A new resource has been created                             |
+    | 400         | Malformed request                                           |
+    | 401         | Missing access token                                        |
+    | 403         | The client does not have permission to access this resource |
+    | 404         | Resource not found                                          |
+    | 405         | Method not supported                                        |
+    | 500         | Internal server error                                       |
+    | 503         | Service unvailable                                          |
     
     ## Errors
     whenever an error occured within the platform, an error response that describes the problem will be returned
@@ -39,6 +56,9 @@ info:
     |            |                                                  |
 
     # Changelog
+    
+    ## 2019-11-05
+    * Created .....
 
     # Useful links
   termsOfService: 'http://swagger.io/terms/'
