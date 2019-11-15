@@ -1,17 +1,29 @@
-version: '3.2'
+version: '2'
 services:
-  spring-boot:
-    build:
-      context: .
+  node:
+    image: wallet-account-user-service
+    container_name: "wallet-account-user-service"
+    build: ./
+    working_dir: /service
     volumes:
-      - type: bind
-        source: src
-        target: /app/src
+      - .:/service
     ports:
-      - "8084:80"
-    environment:
-      - PORT=80
+      - 5000:5000
+    links:
+      - mongodb:mongodb
+    depends_on:
+      - 'mongodb'
+    tty: true
+    command: "/bin/sh -l -c 'npm i && npm run build && npm run start:prod'"
+
   mongodb:
-    image: mongo:latest
+    image: mongo
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
     ports:
-      - "27017:27017"
+      - 27017:27017
+    command: --serviceExecutor adaptive

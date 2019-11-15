@@ -1,23 +1,24 @@
-# Use the official maven/Java 8 image to create a build artifact.
-# https://hub.docker.com/_/maven
-FROM maven:3.5-jdk-8-alpine as builder
+FROM node:latest
 
-# Copy local code to the container image.
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
+RUN mkdir -p /service
+ADD . /service
 
-# Build a release artifact.
-RUN mvn package -DskipTests
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
-# Use AdoptOpenJDK for base image.
-# It's important to use OpenJDK 8u191 or above that has container support enabled.
-# https://hub.docker.com/r/adoptopenjdk/openjdk8
-# https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
-FROM adoptopenjdk/openjdk8:jdk8u202-b08-alpine-slim
+WORKDIR /service
 
-# Copy the jar to the production image from the builder stage.
-COPY --from=builder /app/target/wallet-account-user-*.jar /wallet-account-user.jar
+# optionally if you want to run npm global bin without specifying path
+# ENV PATH=$PATH:/home/node/.npm-global/bin
 
-# Run the web service on container startup.
-CMD ["java","-Djava.security.egd=file:/dev/./urandom","-Dserver.port=${PORT}","-jar","/wallet-account-user.jar"]
+# Set the user to use when running this image
+USER node
+
+RUN npm i -g @nestjs/cli
+
+# Bundle app source
+COPY . .
+
+EXPOSE 5000
+EXPOSE 8000
+
+CMD [ "npm", "start" ]

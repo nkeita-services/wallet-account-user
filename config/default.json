@@ -1,0 +1,21 @@
+{
+    "app": "wallet-account-user-service",
+    "port": 5000,
+    "mongoUri": "mongodb://localhost:27017/wallet-account-user",
+    "mongoOptions": {
+        "useNewUrlParser": true,
+        "useUnifiedTopology": true,
+        "useFindAndModify": false
+    },
+    "auth": {
+      "audience": "https:///wallet-account-user-service.com",
+      "issuer": "https://dev-67i29vew.auth0.com/",
+      "jwksUri": "https://dev-67i29vew.auth0.com/.well-known/jwks.json"
+  },
+    "swagger": {
+      "title": "Wallet-Account-User-Service-API",
+      "description": ""
+    },
+    "logger": {
+    } 
+  }
